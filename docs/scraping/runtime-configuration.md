@@ -40,6 +40,10 @@ metricSinks:
     host: graphite
     port: 8125 # Optional. Default: 8125
     metricPrefix: promitor. # Optional. Default: None
+    geneva: # Optional. Mandatory when using formattertype Geneva
+      namespace: geneva-namespace
+      account: geneva-account 
+    formattertype: Geneva # Optional. Default: None
 metricsConfiguration:
   absolutePath: /config/metrics-declaration.yaml # Optional. Default: /config/metrics-declaration.yaml
 azureMonitor:
@@ -198,6 +202,11 @@ In order to push metrics to a StatsD server, you'll need to configure the sink:
 - `metricSinks.statsd.host` - Port (UDP) address of StatsD server. (Default: `8125`)
 - `metricSinks.statsd.metricPrefix` - Prefix that will be added to every metric
  defined in the metric declaration.
+- `metricSinks.statsd.formattertype` - Defines the formatting for the emitted
+ metrics object.
+- `metricSinks.statsd.geneva.namespace` - The name of the geneva namespace to emit the 
+ metrics to.
+- `metricSinks.statsd.geneva.account` - The geneva account in the provided namespace.
 
 ```yaml
 metricSinks:
@@ -205,6 +214,10 @@ metricSinks:
     host: graphite
     port: 8125
     metricPrefix: promitor.
+    geneva:
+      namespace: geneva-namespace
+      account: geneva-account
+    formattertype: Geneva
 ```
 
 > :warning: **As of today, metric labels are not supported.**
